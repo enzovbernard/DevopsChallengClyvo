@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Consultas')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Consultas Agendadas</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Animal</th>
+                            <th scope="col">Veterinário</th>
+                            <th scope="col">Data da Consulta</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="consulta : ${consultas}">
+                            <td th:text="${consulta.animal != null ? consulta.animal.nm_animal : '-'}"></td>
+                            <td th:text="${consulta.veterinario != null ? consulta.veterinario.nm_veterinario : '-'}"></td>
+                            <td th:text="${#temporals.format(consulta.dt_consulta,'dd/MM/yyyy')}"></td>
+                            <td><a th:href="@{/consultas/detalhes/{id}(id = ${consulta.id_consulta})}">Detalhes</a></td>
+                            <td><a th:href="@{/consultas/cancelar/{id}(id = ${consulta.id_consulta})}">Cancelar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/consultas/agendar">Agendar Consulta</a><br>
+            <a href="/home">Home Page</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Detalhes da Aplicação')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Detalhes da Aplicação de Vacina</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+
+                <tr>
+	                <td><b>Animal:</b></td>
+	                <td th:text="${vacinaAnimal.animal != null ? vacinaAnimal.animal.nm_animal : '-'}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Vacina:</b></td>
+	                <td th:text="${vacinaAnimal.vacina != null ? vacinaAnimal.vacina.nm_vacina : '-'}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Número de Doses:</b></td>
+	                <td th:text="${vacinaAnimal.num_doses}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Frequência (dias):</b></td>
+	                <td th:text="${vacinaAnimal.frequencia_aplicacao}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Data de Aplicação:</b></td>
+	                <td th:text="${#temporals.format(vacinaAnimal.dt_receita,'dd/MM/yyyy')}"></td>
+                </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/vacinaAnimal">Voltar</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+   </body>
+</html>

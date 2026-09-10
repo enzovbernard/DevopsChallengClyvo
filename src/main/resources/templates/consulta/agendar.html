@@ -1,0 +1,52 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Agendar Consulta')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Agendar Consulta</h1>
+        </div>
+
+        <div class="row" th:if="${erro_agendamento != null}">
+            <p style="color: red;"><b th:text="${erro_agendamento}"></b></p>
+        </div>
+
+        <div class="row">
+
+            <form th:object="${consulta}" th:action="@{/consultas/agendar}" method="post">
+
+            Animal:
+            <select class="form-select" name="id_animal">
+            	<option th:each="animal : ${lista_animais}" th:value="${animal.id_animal}"
+            	 th:text="${animal.nm_animal}"></option>
+            </select><br>
+
+            Veterinário:
+            <select class="form-select" name="id_veterinario">
+            	<option th:each="veterinario : ${lista_veterinarios}" th:value="${veterinario.id_veterinario}"
+            	 th:text="${veterinario.nm_veterinario}"></option>
+            </select><br>
+
+            Data da Consulta: <input class="form-control" type="date" th:field="*{dt_consulta}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{dt_consulta}"></div><br>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <button type="submit">Agendar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <a href="/consultas">Voltar</a>
+        </div>
+    </div>
+
+<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

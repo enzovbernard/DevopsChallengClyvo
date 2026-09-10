@@ -1,0 +1,158 @@
+:root {
+	--clyvo-primary: #2E7D6B;
+	--clyvo-primary-dark: #235A4E;
+	--clyvo-bg: #F5F8F7;
+	--clyvo-surface: #FFFFFF;
+	--clyvo-text: #22303C;
+	--clyvo-border: #DCE3E0;
+	--clyvo-muted: #6B7B76;
+	--clyvo-danger: #B3261E;
+	--clyvo-danger-bg: #FBEAEA;
+}
+
+body {
+	background-color: var(--clyvo-bg);
+	color: var(--clyvo-text);
+	font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	line-height: 1.5;
+}
+
+.clyvo-topbar {
+	background-color: var(--clyvo-primary);
+	color: #FFFFFF;
+	padding: 14px 32px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.clyvo-topbar .clyvo-brand {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.clyvo-topbar form {
+	margin: 0;
+}
+
+.clyvo-topbar button {
+	background-color: transparent;
+	color: #FFFFFF;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 6px;
+	padding: 6px 16px;
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+.clyvo-topbar button:hover {
+	background-color: rgba(255, 255, 255, 0.15);
+}
+
+.container {
+	max-width: 900px;
+	background-color: var(--clyvo-surface);
+	padding: 32px 40px;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	border-radius: 10px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+	font-size: 1.75rem;
+	font-weight: 600;
+	color: var(--clyvo-primary-dark);
+	margin-bottom: 20px;
+}
+
+h3 {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--clyvo-text);
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+
+a {
+	color: var(--clyvo-primary-dark);
+	font-weight: 500;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.row > a {
+	display: inline-block;
+	margin-bottom: 6px;
+}
+
+form {
+	max-width: 480px;
+	margin: 0 auto;
+}
+
+.form-control, .form-select, textarea.form-control {
+	margin-bottom: 14px;
+	border: 1px solid var(--clyvo-border);
+	border-radius: 6px;
+}
+
+.form-control:focus, .form-select:focus {
+	border-color: var(--clyvo-primary);
+	box-shadow: 0 0 0 0.15rem rgba(46, 125, 107, 0.2);
+}
+
+button[type="submit"] {
+	background-color: var(--clyvo-primary);
+	color: #FFFFFF;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 24px;
+	font-size: 1rem;
+	cursor: pointer;
+	margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+	background-color: var(--clyvo-primary-dark);
+}
+
+table th {
+	color: var(--clyvo-muted);
+	font-weight: 600;
+	font-size: 0.85rem;
+	border-bottom: 2px solid var(--clyvo-border);
+}
+
+table td {
+	vertical-align: middle;
+}
+
+table td a {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 5px;
+	background-color: #EDF4F2;
+	color: var(--clyvo-primary-dark);
+	font-size: 0.85rem;
+	margin-right: 4px;
+	text-decoration: none;
+}
+
+table td a:hover {
+	background-color: var(--clyvo-primary);
+	color: #FFFFFF;
+}
+
+table td:last-child a {
+	background-color: var(--clyvo-danger-bg);
+	color: var(--clyvo-danger);
+}
+
+table td:last-child a:hover {
+	background-color: var(--clyvo-danger);
+	color: #FFFFFF;
+}

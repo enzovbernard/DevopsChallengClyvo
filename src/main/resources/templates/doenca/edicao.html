@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Editar Doença')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Editar Doença</h1>
+        </div>
+        <div class="row">
+
+            <form th:object="${doenca}" th:action="@{/doencas/atualizar/{id}(id = ${doenca.id_doenca})}" method="post">
+
+            Nome: <input class="form-control" type="text" th:field="*{nm_doenca}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{nm_doenca}"></div><br>
+
+            Tipo: <input class="form-control" type="text" th:field="*{tipo}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{tipo}"></div><br>
+
+            Contagiosa:
+            <select class="form-select" th:field="*{contagiosidade}">
+            	<option value="S">Sim</option>
+            	<option value="N">Não</option>
+            </select><br>
+
+            Descrição: <textarea class="form-control" th:field="*{descricao}"></textarea><br>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <button type="submit">Salvar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <a href="/doencas">Voltar</a>
+        </div>
+    </div>
+
+<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

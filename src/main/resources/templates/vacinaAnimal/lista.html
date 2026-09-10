@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Vacinas Aplicadas')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Vacinas Aplicadas</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Animal</th>
+                            <th scope="col">Vacina</th>
+                            <th scope="col">Data de Aplicação</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="aplicacao : ${aplicacoes}">
+                            <td th:text="${aplicacao.animal != null ? aplicacao.animal.nm_animal : '-'}"></td>
+                            <td th:text="${aplicacao.vacina != null ? aplicacao.vacina.nm_vacina : '-'}"></td>
+                            <td th:text="${#temporals.format(aplicacao.dt_receita,'dd/MM/yyyy')}"></td>
+                            <td><a th:href="@{/vacinaAnimal/detalhes/{id}(id = ${aplicacao.id_vacina_animal})}">Detalhes</a></td>
+                            <td><a th:href="@{/vacinaAnimal/remover/{id}(id = ${aplicacao.id_vacina_animal})}">Remover</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/vacinaAnimal/aplicar">Aplicar Vacina</a><br>
+            <a href="/home">Home Page</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+  </body>
+</html>

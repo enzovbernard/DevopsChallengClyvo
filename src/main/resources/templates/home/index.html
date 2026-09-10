@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: cabecalho('Home Page - Clyvo')}" />
+
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+
+        <div class="row">
+            <h1>Bem-vindo(a) ao sistema Clyvo, <span th:text="${usuario.username}"></span>!</h1>
+        </div>
+
+        <div class="row">
+            <p>Perfil: <span th:text="${usuario.permissao}"></span></p>
+        </div>
+
+        <div class="row">
+            <h3>Gerenciamento</h3>
+
+            <p><strong>Cadastros:</strong> <a href="/responsaveis">Responsáveis</a> | <a href="/animais">Animais</a></p>
+
+            <p><strong>Atendimentos:</strong> <a href="/consultas">Consultas</a> | <a href="/vacinaAnimal">Vacinação</a></p>
+
+            <p th:if="${usuario.permissao == 'ADMIN'}">
+            <strong>Catálogo (Admin):</strong> <a href="/doencas">Doenças</a> | <a href="/vacinas">Vacinas</a> | <a href="/veterinarios">Veterinários</a>
+            </p>
+        </div>
+
+    </div>
+
+   <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+  </body>
+</html>

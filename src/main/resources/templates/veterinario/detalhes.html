@@ -1,0 +1,57 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Detalhes do Veterinário')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Detalhes do Veterinário</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+
+                <tr>
+	                <td><b>Nome:</b></td>
+	                <td th:text="${veterinario.nm_veterinario}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>CPF:</b></td>
+	                <td th:text="${veterinario.cpf}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>E-mail:</b></td>
+	                <td th:text="${veterinario.email}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Telefone:</b></td>
+	                <td th:text="${veterinario.num_celular}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Especialidade:</b></td>
+	                <td th:text="${veterinario.especialidade}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Data de Nascimento:</b></td>
+	                <td th:text="${#temporals.format(veterinario.dt_nascimento,'dd/MM/yyyy')}"></td>
+                </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/veterinarios">Voltar</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+   </body>
+</html>

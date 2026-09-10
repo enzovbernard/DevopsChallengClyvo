@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Aplicar Vacina')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Aplicar Vacina em Animal</h1>
+        </div>
+
+        <div class="row" th:if="${erro_aplicacao != null}">
+            <p style="color: red;"><b th:text="${erro_aplicacao}"></b></p>
+        </div>
+
+        <div class="row">
+
+            <form th:object="${vacinaAnimal}" th:action="@{/vacinaAnimal/aplicar}" method="post">
+
+            Animal:
+            <select class="form-select" name="id_animal">
+            	<option th:each="animal : ${lista_animais}" th:value="${animal.id_animal}"
+            	 th:text="${animal.nm_animal}"></option>
+            </select><br>
+
+            Vacina:
+            <select class="form-select" name="id_vacina">
+            	<option th:each="vacina : ${lista_vacinas}" th:value="${vacina.id_vacina}"
+            	 th:text="${vacina.nm_vacina}"></option>
+            </select><br>
+
+            Número de Doses: <input class="form-control" type="number" th:field="*{num_doses}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{num_doses}"></div><br>
+
+            Frequência de Aplicação (em dias): <input class="form-control" type="number" th:field="*{frequencia_aplicacao}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{frequencia_aplicacao}"></div><br>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <button type="submit">Aplicar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <a href="/vacinaAnimal">Voltar</a>
+        </div>
+    </div>
+
+<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

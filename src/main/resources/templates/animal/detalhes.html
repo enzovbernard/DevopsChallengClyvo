@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Detalhes do Animal')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Detalhes do Animal</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+
+                <tr>
+	                <td><b>Nome:</b></td>
+	                <td th:text="${animal.nm_animal}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Espécie:</b></td>
+	                <td th:text="${animal.especie}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Raça:</b></td>
+	                <td th:text="${animal.raca}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Sexo:</b></td>
+	                <td th:text="${animal.sexo == 'M' ? 'Macho' : 'Fêmea'}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Idade:</b></td>
+	                <td th:text="${animal.idade}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Peso:</b></td>
+	                <td th:text="${animal.peso}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Data de Nascimento:</b></td>
+	                <td th:text="${#temporals.format(animal.dt_nascimento,'dd/MM/yyyy')}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Responsável:</b></td>
+	                <td th:text="${animal.responsavel != null ? animal.responsavel.nm_responsavel : 'Sem responsável'}"></td>
+                </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/animais">Voltar</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+   </body>
+</html>

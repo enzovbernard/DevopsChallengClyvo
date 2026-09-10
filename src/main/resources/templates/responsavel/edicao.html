@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Editar Responsável')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Editar Responsável</h1>
+        </div>
+        <div class="row">
+
+            <form th:object="${responsavel}" th:action="@{/responsaveis/atualizar/{id}(id = ${responsavel.id_responsavel})}" method="post">
+
+            Nome: <input class="form-control" type="text" th:field="*{nm_responsavel}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{nm_responsavel}"></div><br>
+
+            CPF: <input class="form-control" type="text" th:field="*{cpf}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{cpf}"></div><br>
+
+            E-mail: <input class="form-control" type="text" th:field="*{email}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{email}"></div><br>
+
+            Telefone: <input class="form-control" type="text" th:field="*{num_celular}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{num_celular}"></div><br>
+
+            Data de Nascimento: <input class="form-control" type="date" th:field="*{dt_nascimento}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{dt_nascimento}"></div><br>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <button type="submit">Salvar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <a href="/responsaveis">Voltar</a>
+        </div>
+    </div>
+
+<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

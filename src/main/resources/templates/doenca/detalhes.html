@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Detalhes da Doença')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Detalhes da Doença</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+
+                <tr>
+	                <td><b>Nome:</b></td>
+	                <td th:text="${doenca.nm_doenca}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Tipo:</b></td>
+	                <td th:text="${doenca.tipo}"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Contagiosa:</b></td>
+	                <td th:text="${doenca.contagiosidade == 'S'} ? 'Sim' : 'Não'"></td>
+                </tr>
+
+                <tr>
+	                <td><b>Descrição:</b></td>
+	                <td th:text="${doenca.descricao}"></td>
+                </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/doencas">Voltar</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+   </body>
+</html>

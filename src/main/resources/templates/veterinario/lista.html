@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Veterinários')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Veterinários Cadastrados</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Especialidade</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="veterinario : ${veterinarios}">
+                            <td th:text="${veterinario.nm_veterinario}"></td>
+                            <td th:text="${veterinario.especialidade}"></td>
+                            <td th:text="${veterinario.num_celular}"></td>
+                            <td><a th:href="@{/veterinarios/detalhes/{id}(id = ${veterinario.id_veterinario})}">Detalhes</a></td>
+                            <td><a th:href="@{/veterinarios/editar/{id}(id = ${veterinario.id_veterinario})}">Editar</a></td>
+                            <td><a th:href="@{/veterinarios/remover/{id}(id = ${veterinario.id_veterinario})}">Remover</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/veterinarios/novo">Cadastrar Veterinário</a><br>
+            <a href="/home">Home Page</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+  </body>
+</html>

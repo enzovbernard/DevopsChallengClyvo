@@ -1,0 +1,25 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Acesso Negado')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container" style="text-align: center;">
+
+    	<br><br>
+        <div class="row">
+            <h1><b>Você não possui permissão de acessar este conteúdo.</b></h1>
+        </div>
+
+        <br><br>
+
+        <a href="/home"> Retornar à home page </a>
+
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+   </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Cadastrar Vacina')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Cadastrar Vacina</h1>
+        </div>
+        <div class="row">
+
+            <form th:object="${vacina}" th:action="@{/vacinas/cadastrar}" method="post">
+
+            Nome: <input class="form-control" type="text" th:field="*{nm_vacina}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{nm_vacina}"></div><br>
+
+            Tipo: <input class="form-control" type="text" th:field="*{tipo}"
+            th:errorclass="is-invalid"><br>
+            <div class="invalid-feedback" th:errors="*{tipo}"></div><br>
+
+            Descrição: <textarea class="form-control" th:field="*{descricao}"></textarea><br>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
+            <button type="submit">Cadastrar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <a href="/vacinas">Voltar</a>
+        </div>
+    </div>
+
+<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

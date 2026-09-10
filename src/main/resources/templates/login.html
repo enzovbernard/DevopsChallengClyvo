@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Login - Clyvo')}" />
+<body>
+	<div class="container" style="text-align: center;">
+		<br>
+		<br>
+		<div class="row">
+			<h1>Clyvo - Gestão Veterinária</h1>
+		</div>
+
+		<br>
+		<br>
+
+		<div>
+
+			<div th:if="${param.logout}">
+				<p style="color: green;">
+					<b>Logout efetuado com sucesso</b>
+				</p>
+			</div>
+
+			<form th:action="@{/login}" method="post">
+
+				Usuário: <input class="form-control" type="text" id="username"
+					name="username"><br>
+				Senha: <input class="form-control" type="password" id="password"
+					name="password"><br>
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				<button type="submit">Efetuar Login</button>
+
+			</form>
+
+			<br>
+
+			<div th:if="${param.falha}">
+				<p style="color: red;">
+					<b>Usuário e/ou senha inválidos</b>
+				</p>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script th:replace="~{fragmentos :: bootstrap-script}" />
+
+</body>
+</html>

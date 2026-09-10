@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: cabecalho('Responsáveis')}" />
+  <body>
+
+  <div th:replace="~{fragmentos :: funcao-logout}" />
+
+    <div class="container">
+        <div class="row">
+            <h1>Responsáveis Cadastrados</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="responsavel : ${responsaveis}">
+                            <td th:text="${responsavel.nm_responsavel}"></td>
+                            <td th:text="${responsavel.email}"></td>
+                            <td th:text="${responsavel.num_celular}"></td>
+                            <td><a th:href="@{/responsaveis/detalhes/{id}(id = ${responsavel.id_responsavel})}">Detalhes</a></td>
+                            <td><a th:href="@{/responsaveis/editar/{id}(id = ${responsavel.id_responsavel})}">Editar</a></td>
+                            <td><a th:href="@{/responsaveis/remover/{id}(id = ${responsavel.id_responsavel})}">Remover</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/responsaveis/novo">Cadastrar Responsável</a><br>
+            <a href="/home">Home Page</a>
+        </div>
+    </div>
+
+  <script th:replace="~{fragmentos :: bootstrap-script}" />
+
+  </body>
+</html>
