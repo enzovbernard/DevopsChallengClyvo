@@ -41,7 +41,7 @@ O Clyvo centraliza o gerenciamento de uma clinica veterinaria: cadastro de anima
 
 Diagrama da arquitetura:
 
-![Arquitetura da Solucao](arquitetura-devops.svg)
+![Arquitetura da Solucao](arquitetura-devops.jpg)
 
 ## Tecnologias Utilizadas
 
