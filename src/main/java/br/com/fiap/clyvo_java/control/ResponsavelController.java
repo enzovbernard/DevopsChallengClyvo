@@ -20,16 +20,16 @@ public class ResponsavelController {
 	@Autowired
 	private ResponsavelRepository repR;
 
-	@GetMapping("/responsaveis")
+	@GetMapping("responsaveis")
 	public ModelAndView listarResponsaveis() {
-		ModelAndView mv = new ModelAndView("/responsavel/lista");
+		ModelAndView mv = new ModelAndView("responsavel/lista");
 		mv.addObject("responsaveis", repR.findAll());
 		return mv;
 	}
 
-	@GetMapping("/responsaveis/novo")
+	@GetMapping("responsaveis/novo")
 	public ModelAndView popularFormResponsavel() {
-		ModelAndView mv = new ModelAndView("/responsavel/novo");
+		ModelAndView mv = new ModelAndView("responsavel/novo");
 		mv.addObject("responsavel", new Responsavel());
 		return mv;
 	}
@@ -37,7 +37,7 @@ public class ResponsavelController {
 	@PostMapping("/responsaveis/cadastrar")
 	public ModelAndView cadastrarResponsavel(@Valid Responsavel responsavel, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/responsavel/novo");
+			ModelAndView mv = new ModelAndView("responsavel/novo");
 			mv.addObject("responsavel", responsavel);
 			return mv;
 		}
@@ -45,32 +45,32 @@ public class ResponsavelController {
 		return new ModelAndView("redirect:/responsaveis");
 	}
 
-	@GetMapping("/responsaveis/detalhes/{id}")
+	@GetMapping("responsaveis/detalhes/{id}")
 	public ModelAndView exibirDetalhesResponsavel(@PathVariable Long id) {
 		Optional<Responsavel> op = repR.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/responsavel/detalhes");
+			ModelAndView mv = new ModelAndView("responsavel/detalhes");
 			mv.addObject("responsavel", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/responsaveis");
 	}
 
-	@GetMapping("/responsaveis/editar/{id}")
+	@GetMapping("responsaveis/editar/{id}")
 	public ModelAndView retornarPaginaEdicao(@PathVariable Long id) {
 		Optional<Responsavel> op = repR.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/responsavel/edicao");
+			ModelAndView mv = new ModelAndView("responsavel/edicao");
 			mv.addObject("responsavel", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/responsaveis");
 	}
 
-	@PostMapping("/responsaveis/atualizar/{id}")
+	@PostMapping("responsaveis/atualizar/{id}")
 	public ModelAndView atualizarResponsavel(@PathVariable Long id, @Valid Responsavel responsavel, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/responsavel/edicao");
+			ModelAndView mv = new ModelAndView("responsavel/edicao");
 			mv.addObject("responsavel", responsavel);
 			return mv;
 		}
@@ -83,7 +83,7 @@ public class ResponsavelController {
 		return new ModelAndView("redirect:/responsaveis");
 	}
 
-	@GetMapping("/responsaveis/remover/{id}")
+	@GetMapping("responsaveis/remover/{id}")
 	public ModelAndView removerResponsavel(@PathVariable Long id) {
 		Optional<Responsavel> op = repR.findById(id);
 		if (op.isPresent()) {

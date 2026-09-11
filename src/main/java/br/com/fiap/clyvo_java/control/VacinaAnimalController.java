@@ -35,29 +35,29 @@ public class VacinaAnimalController {
 	@Autowired
 	private VacinaRepository repV;
 
-	@GetMapping("/vacinaAnimal")
+	@GetMapping("vacinaAnimal")
 	public ModelAndView listarAplicacoes() {
-		ModelAndView mv = new ModelAndView("/vacinaAnimal/lista");
+		ModelAndView mv = new ModelAndView("vacinaAnimal/lista");
 		mv.addObject("aplicacoes", repVA.findAll());
 		return mv;
 	}
 
-	@GetMapping("/vacinaAnimal/aplicar")
+	@GetMapping("vacinaAnimal/aplicar")
 	public ModelAndView popularFormAplicacao() {
-		ModelAndView mv = new ModelAndView("/vacinaAnimal/aplicar");
+		ModelAndView mv = new ModelAndView("vacinaAnimal/aplicar");
 		mv.addObject("vacinaAnimal", new VacinaAnimal());
 		mv.addObject("lista_animais", repA.findAll());
 		mv.addObject("lista_vacinas", repV.findAll());
 		return mv;
 	}
 
-	@PostMapping("/vacinaAnimal/aplicar")
+	@PostMapping("vacinaAnimal/aplicar")
 	public ModelAndView aplicarVacina(@Valid VacinaAnimal vacinaAnimal, BindingResult bd,
 			@RequestParam(name = "id_animal") Long id_animal,
 			@RequestParam(name = "id_vacina") Long id_vacina) {
 
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/vacinaAnimal/aplicar");
+			ModelAndView mv = new ModelAndView("vacinaAnimal/aplicar");
 			mv.addObject("vacinaAnimal", vacinaAnimal);
 			mv.addObject("lista_animais", repA.findAll());
 			mv.addObject("lista_vacinas", repV.findAll());
@@ -74,7 +74,7 @@ public class VacinaAnimalController {
 				LocalDate proximaData = ultima.getDt_receita().plusDays(ultima.getFrequencia_aplicacao());
 				DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-				ModelAndView mv = new ModelAndView("/vacinaAnimal/aplicar");
+				ModelAndView mv = new ModelAndView("vacinaAnimal/aplicar");
 				mv.addObject("vacinaAnimal", vacinaAnimal);
 				mv.addObject("lista_animais", repA.findAll());
 				mv.addObject("lista_vacinas", repV.findAll());
@@ -96,18 +96,18 @@ public class VacinaAnimalController {
 		return new ModelAndView("redirect:/vacinaAnimal");
 	}
 
-	@GetMapping("/vacinaAnimal/detalhes/{id}")
+	@GetMapping("vacinaAnimal/detalhes/{id}")
 	public ModelAndView exibirDetalhesAplicacao(@PathVariable Long id) {
 		Optional<VacinaAnimal> op = repVA.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/vacinaAnimal/detalhes");
+			ModelAndView mv = new ModelAndView("vacinaAnimal/detalhes");
 			mv.addObject("vacinaAnimal", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/vacinaAnimal");
 	}
 
-	@GetMapping("/vacinaAnimal/remover/{id}")
+	@GetMapping("vacinaAnimal/remover/{id}")
 	public ModelAndView removerAplicacao(@PathVariable Long id) {
 		Optional<VacinaAnimal> op = repVA.findById(id);
 		if (op.isPresent()) {

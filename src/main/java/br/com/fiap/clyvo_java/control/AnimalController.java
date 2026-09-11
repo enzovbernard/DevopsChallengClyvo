@@ -26,26 +26,26 @@ public class AnimalController {
 	@Autowired
 	private ResponsavelRepository repR;
 
-	@GetMapping("/animais")
+	@GetMapping("animais")
 	public ModelAndView listarAnimais() {
-		ModelAndView mv = new ModelAndView("/animal/lista");
+		ModelAndView mv = new ModelAndView("animal/lista");
 		mv.addObject("animais", repA.findAll());
 		return mv;
 	}
 
-	@GetMapping("/animais/novo")
+	@GetMapping("animais/novo")
 	public ModelAndView popularFormAnimal() {
-		ModelAndView mv = new ModelAndView("/animal/novo");
+		ModelAndView mv = new ModelAndView("animal/novo");
 		mv.addObject("animal", new Animal());
 		mv.addObject("lista_responsaveis", repR.findAll());
 		return mv;
 	}
 
-	@PostMapping("/animais/cadastrar")
+	@PostMapping("animais/cadastrar")
 	public ModelAndView cadastrarAnimal(@Valid Animal animal, BindingResult bd,
 			@RequestParam(name = "id_responsavel", required = false) Long id_responsavel) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/animal/novo");
+			ModelAndView mv = new ModelAndView("animal/novo");
 			mv.addObject("animal", animal);
 			mv.addObject("lista_responsaveis", repR.findAll());
 			return mv;
@@ -58,22 +58,22 @@ public class AnimalController {
 		return new ModelAndView("redirect:/animais");
 	}
 
-	@GetMapping("/animais/detalhes/{id}")
+	@GetMapping("animais/detalhes/{id}")
 	public ModelAndView exibirDetalhesAnimal(@PathVariable Long id) {
 		Optional<Animal> op = repA.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/animal/detalhes");
+			ModelAndView mv = new ModelAndView("animal/detalhes");
 			mv.addObject("animal", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/animais");
 	}
 
-	@GetMapping("/animais/editar/{id}")
+	@GetMapping("animais/editar/{id}")
 	public ModelAndView retornarPaginaEdicao(@PathVariable Long id) {
 		Optional<Animal> op = repA.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/animal/edicao");
+			ModelAndView mv = new ModelAndView("animal/edicao");
 			mv.addObject("animal", op.get());
 			mv.addObject("lista_responsaveis", repR.findAll());
 			return mv;
@@ -81,11 +81,11 @@ public class AnimalController {
 		return new ModelAndView("redirect:/animais");
 	}
 
-	@PostMapping("/animais/atualizar/{id}")
+	@PostMapping("animais/atualizar/{id}")
 	public ModelAndView atualizarAnimal(@PathVariable Long id, @Valid Animal animal, BindingResult bd,
 			@RequestParam(name = "id_responsavel", required = false) Long id_responsavel) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/animal/edicao");
+			ModelAndView mv = new ModelAndView("animal/edicao");
 			mv.addObject("animal", animal);
 			mv.addObject("lista_responsaveis", repR.findAll());
 			return mv;
@@ -103,7 +103,7 @@ public class AnimalController {
 		return new ModelAndView("redirect:/animais");
 	}
 
-	@GetMapping("/animais/remover/{id}")
+	@GetMapping("animais/remover/{id}")
 	public ModelAndView removerAnimal(@PathVariable Long id) {
 		Optional<Animal> op = repA.findById(id);
 		if (op.isPresent()) {

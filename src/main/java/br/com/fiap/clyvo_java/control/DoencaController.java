@@ -20,24 +20,24 @@ public class DoencaController {
 	@Autowired
 	private DoencaRepository repD;
 
-	@GetMapping("/doencas")
+	@GetMapping("doencas")
 	public ModelAndView listarDoencas() {
-		ModelAndView mv = new ModelAndView("/doenca/lista");
+		ModelAndView mv = new ModelAndView("doenca/lista");
 		mv.addObject("doencas", repD.findAll());
 		return mv;
 	}
 
-	@GetMapping("/doencas/nova")
+	@GetMapping("doencas/nova")
 	public ModelAndView popularFormDoenca() {
-		ModelAndView mv = new ModelAndView("/doenca/nova");
+		ModelAndView mv = new ModelAndView("doenca/nova");
 		mv.addObject("doenca", new Doenca());
 		return mv;
 	}
 
-	@PostMapping("/doencas/cadastrar")
+	@PostMapping("doencas/cadastrar")
 	public ModelAndView cadastrarDoenca(@Valid Doenca doenca, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/doenca/nova");
+			ModelAndView mv = new ModelAndView("doenca/nova");
 			mv.addObject("doenca", doenca);
 			return mv;
 		}
@@ -45,32 +45,32 @@ public class DoencaController {
 		return new ModelAndView("redirect:/doencas");
 	}
 
-	@GetMapping("/doencas/detalhes/{id}")
+	@GetMapping("doencas/detalhes/{id}")
 	public ModelAndView exibirDetalhesDoenca(@PathVariable Long id) {
 		Optional<Doenca> op = repD.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/doenca/detalhes");
+			ModelAndView mv = new ModelAndView("doenca/detalhes");
 			mv.addObject("doenca", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/doencas");
 	}
 
-	@GetMapping("/doencas/editar/{id}")
+	@GetMapping("doencas/editar/{id}")
 	public ModelAndView retornarPaginaEdicao(@PathVariable Long id) {
 		Optional<Doenca> op = repD.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/doenca/edicao");
+			ModelAndView mv = new ModelAndView("doenca/edicao");
 			mv.addObject("doenca", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/doencas");
 	}
 
-	@PostMapping("/doencas/atualizar/{id}")
+	@PostMapping("doencas/atualizar/{id}")
 	public ModelAndView atualizarDoenca(@PathVariable Long id, @Valid Doenca doenca, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/doenca/edicao");
+			ModelAndView mv = new ModelAndView("doenca/edicao");
 			mv.addObject("doenca", doenca);
 			return mv;
 		}
@@ -83,7 +83,7 @@ public class DoencaController {
 		return new ModelAndView("redirect:/doencas");
 	}
 
-	@GetMapping("/doencas/remover/{id}")
+	@GetMapping("doencas/remover/{id}")
 	public ModelAndView removerDoenca(@PathVariable Long id) {
 		Optional<Doenca> op = repD.findById(id);
 		if (op.isPresent()) {

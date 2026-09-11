@@ -32,29 +32,29 @@ public class ConsultaController {
 	@Autowired
 	private VeterinarioRepository repV;
 
-	@GetMapping("/consultas")
+	@GetMapping("consultas")
 	public ModelAndView listarConsultas() {
-		ModelAndView mv = new ModelAndView("/consulta/lista");
+		ModelAndView mv = new ModelAndView("consulta/lista");
 		mv.addObject("consultas", repC.findAll());
 		return mv;
 	}
 
-	@GetMapping("/consultas/agendar")
+	@GetMapping("consultas/agendar")
 	public ModelAndView popularFormConsulta() {
-		ModelAndView mv = new ModelAndView("/consulta/agendar");
+		ModelAndView mv = new ModelAndView("consulta/agendar");
 		mv.addObject("consulta", new Consulta());
 		mv.addObject("lista_animais", repA.findAll());
 		mv.addObject("lista_veterinarios", repV.findAll());
 		return mv;
 	}
 
-	@PostMapping("/consultas/agendar")
+	@PostMapping("consultas/agendar")
 	public ModelAndView agendarConsulta(@Valid Consulta consulta, BindingResult bd,
 			@RequestParam(name = "id_animal") Long id_animal,
 			@RequestParam(name = "id_veterinario") Long id_veterinario) {
 
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/consulta/agendar");
+			ModelAndView mv = new ModelAndView("consulta/agendar");
 			mv.addObject("consulta", consulta);
 			mv.addObject("lista_animais", repA.findAll());
 			mv.addObject("lista_veterinarios", repV.findAll());
@@ -64,7 +64,7 @@ public class ConsultaController {
 		boolean veterinarioOcupado = repC.existeConsultaMesmoVeterinarioMesmoDia(id_veterinario, consulta.getDt_consulta());
 
 		if (veterinarioOcupado) {
-			ModelAndView mv = new ModelAndView("/consulta/agendar");
+			ModelAndView mv = new ModelAndView("consulta/agendar");
 			mv.addObject("consulta", consulta);
 			mv.addObject("lista_animais", repA.findAll());
 			mv.addObject("lista_veterinarios", repV.findAll());
@@ -84,18 +84,18 @@ public class ConsultaController {
 		return new ModelAndView("redirect:/consultas");
 	}
 
-	@GetMapping("/consultas/detalhes/{id}")
+	@GetMapping("consultas/detalhes/{id}")
 	public ModelAndView exibirDetalhesConsulta(@PathVariable Long id) {
 		Optional<Consulta> op = repC.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/consulta/detalhes");
+			ModelAndView mv = new ModelAndView("consulta/detalhes");
 			mv.addObject("consulta", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/consultas");
 	}
 
-	@GetMapping("/consultas/cancelar/{id}")
+	@GetMapping("consultas/cancelar/{id}")
 	public ModelAndView cancelarConsulta(@PathVariable Long id) {
 		Optional<Consulta> op = repC.findById(id);
 		if (op.isPresent()) {

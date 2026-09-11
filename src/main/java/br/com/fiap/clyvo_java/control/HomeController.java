@@ -18,9 +18,9 @@ public class HomeController {
 	@Autowired
 	private UsuarioRepository repU;
 
-	@GetMapping("/home")
+	@GetMapping("home")
 	public ModelAndView popularHomePage() {
-		ModelAndView mv = new ModelAndView("/home/index");
+		ModelAndView mv = new ModelAndView("home/index");
 
 		Authentication autenticado = SecurityContextHolder.getContext().getAuthentication();
 

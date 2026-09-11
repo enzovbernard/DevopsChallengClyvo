@@ -20,24 +20,24 @@ public class VeterinarioController {
 	@Autowired
 	private VeterinarioRepository repV;
 
-	@GetMapping("/veterinarios")
+	@GetMapping("veterinarios")
 	public ModelAndView listarVeterinarios() {
-		ModelAndView mv = new ModelAndView("/veterinario/lista");
+		ModelAndView mv = new ModelAndView("veterinario/lista");
 		mv.addObject("veterinarios", repV.findAll());
 		return mv;
 	}
 
-	@GetMapping("/veterinarios/novo")
+	@GetMapping("veterinarios/novo")
 	public ModelAndView popularFormVeterinario() {
-		ModelAndView mv = new ModelAndView("/veterinario/novo");
+		ModelAndView mv = new ModelAndView("veterinario/novo");
 		mv.addObject("veterinario", new Veterinario());
 		return mv;
 	}
 
-	@PostMapping("/veterinarios/cadastrar")
+	@PostMapping("veterinarios/cadastrar")
 	public ModelAndView cadastrarVeterinario(@Valid Veterinario veterinario, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/veterinario/novo");
+			ModelAndView mv = new ModelAndView("veterinario/novo");
 			mv.addObject("veterinario", veterinario);
 			return mv;
 		}
@@ -45,32 +45,32 @@ public class VeterinarioController {
 		return new ModelAndView("redirect:/veterinarios");
 	}
 
-	@GetMapping("/veterinarios/detalhes/{id}")
+	@GetMapping("veterinarios/detalhes/{id}")
 	public ModelAndView exibirDetalhesVeterinario(@PathVariable Long id) {
 		Optional<Veterinario> op = repV.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/veterinario/detalhes");
+			ModelAndView mv = new ModelAndView("veterinario/detalhes");
 			mv.addObject("veterinario", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/veterinarios");
 	}
 
-	@GetMapping("/veterinarios/editar/{id}")
+	@GetMapping("veterinarios/editar/{id}")
 	public ModelAndView retornarPaginaEdicao(@PathVariable Long id) {
 		Optional<Veterinario> op = repV.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/veterinario/edicao");
+			ModelAndView mv = new ModelAndView("veterinario/edicao");
 			mv.addObject("veterinario", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/veterinarios");
 	}
 
-	@PostMapping("/veterinarios/atualizar/{id}")
+	@PostMapping("veterinarios/atualizar/{id}")
 	public ModelAndView atualizarVeterinario(@PathVariable Long id, @Valid Veterinario veterinario, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/veterinario/edicao");
+			ModelAndView mv = new ModelAndView("veterinario/edicao");
 			mv.addObject("veterinario", veterinario);
 			return mv;
 		}
@@ -83,7 +83,7 @@ public class VeterinarioController {
 		return new ModelAndView("redirect:/veterinarios");
 	}
 
-	@GetMapping("/veterinarios/remover/{id}")
+	@GetMapping("veterinarios/remover/{id}")
 	public ModelAndView removerVeterinario(@PathVariable Long id) {
 		Optional<Veterinario> op = repV.findById(id);
 		if (op.isPresent()) {

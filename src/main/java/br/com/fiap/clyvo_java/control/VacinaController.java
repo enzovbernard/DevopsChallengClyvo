@@ -20,24 +20,24 @@ public class VacinaController {
 	@Autowired
 	private VacinaRepository repV;
 
-	@GetMapping("/vacinas")
+	@GetMapping("vacinas")
 	public ModelAndView listarVacinas() {
-		ModelAndView mv = new ModelAndView("/vacina/lista");
+		ModelAndView mv = new ModelAndView("vacina/lista");
 		mv.addObject("vacinas", repV.findAll());
 		return mv;
 	}
 
-	@GetMapping("/vacinas/nova")
+	@GetMapping("vacinas/nova")
 	public ModelAndView popularFormVacina() {
-		ModelAndView mv = new ModelAndView("/vacina/nova");
+		ModelAndView mv = new ModelAndView("vacina/nova");
 		mv.addObject("vacina", new Vacina());
 		return mv;
 	}
 
-	@PostMapping("/vacinas/cadastrar")
+	@PostMapping("vacinas/cadastrar")
 	public ModelAndView cadastrarVacina(@Valid Vacina vacina, BindingResult bd) {
 		if (bd.hasErrors()) {
-			ModelAndView mv = new ModelAndView("/vacina/nova");
+			ModelAndView mv = new ModelAndView("vacina/nova");
 			mv.addObject("vacina", vacina);
 			return mv;
 		}
@@ -45,29 +45,29 @@ public class VacinaController {
 		return new ModelAndView("redirect:/vacinas");
 	}
 
-	@GetMapping("/vacinas/detalhes/{id}")
+	@GetMapping("vacinas/detalhes/{id}")
 	public ModelAndView exibirDetalhesVacina(@PathVariable Long id) {
 		Optional<Vacina> op = repV.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/vacina/detalhes");
+			ModelAndView mv = new ModelAndView("vacina/detalhes");
 			mv.addObject("vacina", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/vacinas");
 	}
 
-	@GetMapping("/vacinas/editar/{id}")
+	@GetMapping("vacinas/editar/{id}")
 	public ModelAndView retornarPaginaEdicao(@PathVariable Long id) {
 		Optional<Vacina> op = repV.findById(id);
 		if (op.isPresent()) {
-			ModelAndView mv = new ModelAndView("/vacina/edicao");
+			ModelAndView mv = new ModelAndView("vacina/edicao");
 			mv.addObject("vacina", op.get());
 			return mv;
 		}
 		return new ModelAndView("redirect:/vacinas");
 	}
 
-	@PostMapping("/vacinas/atualizar/{id}")
+	@PostMapping("vacinas/atualizar/{id}")
 	public ModelAndView atualizarVacina(@PathVariable Long id, @Valid Vacina vacina, BindingResult bd) {
 		if (bd.hasErrors()) {
 			ModelAndView mv = new ModelAndView("/vacina/edicao");
@@ -83,7 +83,7 @@ public class VacinaController {
 		return new ModelAndView("redirect:/vacinas");
 	}
 
-	@GetMapping("/vacinas/remover/{id}")
+	@GetMapping("vacinas/remover/{id}")
 	public ModelAndView removerVacina(@PathVariable Long id) {
 		Optional<Vacina> op = repV.findById(id);
 		if (op.isPresent()) {

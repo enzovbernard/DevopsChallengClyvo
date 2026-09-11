@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AcessoNegadoController {
 
-	@GetMapping("/acesso_negado")
+	@GetMapping("acesso_negado")
 	public ModelAndView exibirPaginaAcessoNegado() {
-		return new ModelAndView("/acesso_negado");
+		return new ModelAndView("acesso_negado");
 	}
 
 }
