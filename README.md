@@ -275,7 +275,7 @@ SELECT * FROM T_CLYVO_ANIMAL WHERE id_animal = <id>;
 az group delete --name $RESOURCE_GROUP_NAME --yes --no-wait
 ```
 
-##Link do vídeo no YouTube
+## Link do vídeo no YouTube
 https://www.youtube.com/watch?v=lCyh29VkLnk
 
 ## Integrantes
