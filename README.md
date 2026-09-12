@@ -269,17 +269,14 @@ SELECT * FROM T_CLYVO_ANIMAL WHERE id_animal = <id>;
 
 - Nenhuma credencial (usuario, senha do Oracle) fica exposta no codigo-fonte: as configuracoes de conexao no `application.properties` usam variaveis de ambiente (`${SPRING_DATASOURCE_URL}`, etc.), preenchidas em tempo de execucao pelas Configuracoes do Web App no Azure.
 - No pipeline de CI/CD, as mesmas credenciais ficam armazenadas como Secrets criptografados do GitHub, nunca em texto plano no repositorio.
-- As senhas dos usuarios da aplicacao sao armazenadas com hash BCrypt.
 - A aplicacao usa Spring Security com dois perfis de acesso (ADMIN e USER), com rotas de cadastro restritas por perfil.
-
-## Custos e Limpeza dos Recursos
-
-O Azure App Service Plan foi mantido no tier F1 (gratuito), e o Application Insights opera dentro da camada gratuita padrao, mantendo o custo compativel com o limite do Azure for Students. Apos a gravacao do video de demonstracao, os recursos sao removidos:
 
 ```
 az group delete --name $RESOURCE_GROUP_NAME --yes --no-wait
 ```
 
+##Link do vídeo no YouTube
+https://www.youtube.com/watch?v=lCyh29VkLnk
 
 ## Integrantes
 
